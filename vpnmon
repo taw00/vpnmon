@@ -67,7 +67,7 @@ def get_argparser():
 
 def disable_net():
     show_notification('Disabling networking...', 'dialog-warning')
-    os.system('nmcli -p nm enable false')
+    os.system('nmcli -p n off')
 
 def run_command(command):
     msg = 'Running command:\n' + \
@@ -83,7 +83,7 @@ def main():
     try:
         # Workaround missing connections in nm-applet.
         # Part 1
-        os.system('nmcli -p nm enable false')
+        os.system('nmcli -p n off')
 
         # Get the catchall_signal_handler functor.
         catchall_signal_handler = CatchallSignalHandler(command)
@@ -98,7 +98,7 @@ def main():
 
         # Workaround missing connections in nm-applet.
         # Part 2
-        os.system('nmcli -p nm enable true')
+        os.system('nmcli -p n on')
 
         show_notification('Monitoring your VPN connection...', 'dialog-information')
         loop.run()
